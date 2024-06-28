@@ -1,0 +1,13 @@
+body {
+  margin: 0;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  background-color: #1da1f1;
+}
+
+h1 {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
