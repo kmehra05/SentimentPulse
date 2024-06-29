@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './SearchBar.css';
 
 const SearchBar = () => {
   const [keyword, setKeyword] = useState('');
+  const navigate = useNavigate();
 
   const handleSearch = () => {
-    //imma figure this out later
+    navigate(`/analyze/${keyword}`);
   };
 
   return (
@@ -14,7 +16,7 @@ const SearchBar = () => {
         type="text"
         value={keyword}
         onChange={(e) => setKeyword(e.target.value)}
-        placeholder="Enter keyword or hashtag"
+        placeholder="Enter topic or keyword ↵"
         onKeyDown={(e) => { if (e.key === 'Enter') handleSearch(); }}
       />
     </div>
