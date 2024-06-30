@@ -1,4 +1,3 @@
-// tests/components/Detailed/LineChart.test.jsx
 import React from 'react';
 import { render } from '@testing-library/react';
 import CustomLineChart from '../../../src/components/Detailed/LineChart';

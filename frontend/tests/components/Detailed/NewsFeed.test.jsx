@@ -1,4 +1,3 @@
-// tests/components/Detailed/NewsFeed.test.jsx
 import React from 'react';
 import { render } from '@testing-library/react';
 import NewsFeed from '../../../src/components/Detailed/NewsFeed';

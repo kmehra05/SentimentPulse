@@ -1,4 +1,3 @@
-// tests/components/Detailed/PieChart.test.jsx
 import React from 'react';
 import { render } from '@testing-library/react';
 import CustomPieChart from '../../../src/components/Detailed/PieChart';
