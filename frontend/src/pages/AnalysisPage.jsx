@@ -9,7 +9,7 @@ import NewsFeed from '../components/Detailed/NewsFeed';
 import Loader from '../components/Loader/Loader';
 import './AnalysisPage.css';
 
-const BASE_URL = process.env.REACT_APP_BACKEND_BASE_URL;
+const BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL;
 
 const AnalysisPage = () => {
   const { keyword } = useParams();
