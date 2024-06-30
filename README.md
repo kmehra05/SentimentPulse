@@ -1,1 +1,1 @@
-# TopicTrends
+# SentimentPulse
