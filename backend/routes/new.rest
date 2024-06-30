@@ -1,2 +1,4 @@
 
-GET http://localhost:3000/api/news/analyze?keyword=Donald Trump
+GET http://localhost:3000/api/news/analyze?keyword=Trump
+
+# GET http://localhost:3000/api/history?keyword=Rafael Nadal

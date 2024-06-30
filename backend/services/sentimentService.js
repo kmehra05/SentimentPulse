@@ -1,5 +1,6 @@
 const NaturalLanguageUnderstandingV1 = require('ibm-watson/natural-language-understanding/v1');
 const { IamAuthenticator } = require('ibm-watson/auth');
+const News = require('../models/newsModel');
 require('dotenv').config();
 
 const nlu = new NaturalLanguageUnderstandingV1({
@@ -69,4 +70,26 @@ const targetedSentimentStats = async (analysis) => {
   }
 };
 
-module.exports = { analyzeTargetedSentiment, targetedSentimentStats };
+const getPastSentiments = async (query) => {
+  try {
+    // Find all documents that match the given query
+    const results = await News.find({ keyword: query })
+
+
+    // Format the results
+    const formattedResults = results.map(result => ({
+      sentimentStats: result.sentimentStats.averageScore,
+      dateTime: result.addTime.toISOString()
+    }));
+
+    return formattedResults;
+  } catch (error) {
+    console.error('Error fetching past sentiments:', error);
+    throw error;
+  }
+};
+
+module.exports = getPastSentiments;
+
+
+module.exports = { analyzeTargetedSentiment, targetedSentimentStats, getPastSentiments };

@@ -1,26 +1,109 @@
-.analysis-page {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  height: 100vh;
-  width: 100%;
-}
-
-.search {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  padding: 15px;
-}
-
-.search>* {
-  margin: 0;
-}
-
-.content {
-  flex: 1;
+.spinner {
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 400px;
+  font-size: 24px;
+  color: #333;
+}
+
+.error-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  margin-top: 20px;
+  height: font-size + 30px;
+  border-radius: 12px;
+  background-color: white;
+  color: #F44336;
+  text-align: center;
+}
+
+.sentiment-score {
+  text-align: center;
+  margin-bottom: 3px;
+  padding: 10px;
+  border-radius: 15px;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.sentiment-score h1.green {
+  color: green;
+}
+
+.sentiment-score h1.red {
+  color: red;
+}
+
+.sentiment-score h1.gray {
+  color: gray;
+}
+
+.detailed {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  border-radius: 15px;
+}
+
+.charts {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  margin-bottom: 2px;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.charts>div {
+  flex: 1;
+  margin: 0 10px;
+}
+
+.news-feed {
+  width: 100%;
+  max-width: 800px;
+  border-radius: 15px;
+  background-color: white;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.news-feed div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.news-feed h3 {
+  margin: 0;
+}
+
+.news-feed span {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 12px;
+  font-weight: bold;
+}
+
+.news-feed span.green {
+  background-color: #e0ffe0;
+  color: green;
+}
+
+.news-feed span.gray {
+  background-color: #f0f0f0;
+  color: gray;
+}
+
+.news-feed span.red {
+  background-color: #ffe0e0;
+  color: red;
 }

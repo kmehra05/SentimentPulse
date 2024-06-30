@@ -6,7 +6,7 @@ const News = require('../models/newsModel');
 const getNewsWithSentiment = async (query) => {
   const existingEntry = await News.findOne({
     keyword: query,
-    addTime: { $gte: new Date(Date.now() - 260 * 60 * 1000) } // Check if there's an entry in the last 30 minutes
+    addTime: { $gte: new Date(Date.now() - 60 * 60 * 1000) } // Check if there's an entry in the last 30 minutes
   });
 
   if (existingEntry) {
