@@ -28,7 +28,9 @@ const analyzeTargetedSentiment = async (texts, keyword) => {
   try {
     const results = await Promise.all(analyses);
     return results.map(result => {
-      return roundTo1(num = (result.result.sentiment.targets[0].score + 1) * 5);
+      const score = result.result?.sentiment?.targets[0]?.score;
+      if (score === undefined) throw new Error('Invalid analysis result');
+      return roundTo1((score + 1) * 5);
     });
   } catch (error) {
     console.error('Error analyzing targeted sentiment:', error);
@@ -88,8 +90,5 @@ const getPastSentiments = async (query) => {
     throw error;
   }
 };
-
-module.exports = getPastSentiments;
-
 
 module.exports = { analyzeTargetedSentiment, targetedSentimentStats, getPastSentiments };
