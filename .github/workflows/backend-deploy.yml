@@ -29,7 +29,7 @@ jobs:
 
       - name: Create Jest config
         run: |
-          echo "module.exports = { transform: { '^.+\\.js$': 'babel-jest' }, testEnvironment: 'node' };" > jest.config.js
+          echo "module.exports = { transform: { '^.+\\\\.js$': 'babel-jest' }, testEnvironment: 'node', transformIgnorePatterns: ['/node_modules/(?!(bson)/)'], };" > jest.config.js
         working-directory: backend
 
       - name: Run tests
