@@ -64,7 +64,7 @@ jobs:
         run: echo "$HOME/.local/bin" >> $GITHUB_PATH
 
       - name: Generate Deployment Package
-        run: zip -r ../nodejs-app-build.zip .
+        run: zip -r /tmp/nodejs-app-build.zip .
 
       - name: Deploy to EB
         uses: einaregilsson/beanstalk-deploy@v21
@@ -75,7 +75,7 @@ jobs:
           environment_name: ${{ secrets.ENVIRONMENT_NAME }}
           version_label: ${{ github.sha }}
           region: ${{ secrets.AWS_REGION }}
-          deployment_package: ../nodejs-app-build.zip
+          deployment_package: /tmp/nodejs-app-build.zip
 
 
       # - name: Configure AWS
