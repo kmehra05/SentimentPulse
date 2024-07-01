@@ -24,6 +24,8 @@ const newsRouter = require('./routes/news');
 app.use('/api/news', newsRouter);
 app.use('/api/', newsRouter)
 
-app.listen(process.env.PORT, () => {
-  console.log(`Server Started at ${process.env.PORT}`);
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => {
+  console.log(`Server Started at ${port}`);
 });
