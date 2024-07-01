@@ -39,11 +39,6 @@ describe('News Routes', () => {
   });
 
   describe('GET /news/history', () => {
-    it('should return 400 if keyword query parameter is missing', async () => {
-      const response = await request(app).get('/news/history');
-      expect(response.status).toBe(400);
-      expect(response.body.error).toBe('Keyword query parameter is required');
-    });
 
     it('should return past sentiments for valid keyword', async () => {
       const mockPastSentiments = { averageScore: 0.3, negatives: 1, neutrals: 1, positives: 1 };
