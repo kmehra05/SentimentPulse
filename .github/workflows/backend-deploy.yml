@@ -6,8 +6,11 @@ on:
       - main
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
 
     steps:
       - name: Checkout code
@@ -20,17 +23,14 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-        working-directory: backend
 
       - name: Create Babel config
         run: |
           echo "module.exports = { presets: [['@babel/preset-env', { targets: { node: 'current' } }]] };" > babel.config.js
-        working-directory: backend
 
       - name: Create Jest config
         run: |
           echo "module.exports = { transform: { '^.+\\\\.js$': 'babel-jest' }, testEnvironment: 'node', transformIgnorePatterns: ['/node_modules/(?!(bson|other-dependencies)/)'], };" > jest.config.js
-        working-directory: backend
 
       - name: Run tests
         env:
@@ -42,10 +42,20 @@ jobs:
           IBM_SERVICE_URL: ${{ secrets.IBM_SERVICE_URL }}
           PORT: ${{ secrets.PORT }}
         run: npm test
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    defaults:
+      run:
         working-directory: backend
 
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
       - name: Install pip
-        run: sudo apt-get install python3-pip
+        run: sudo apt-get install -y python3-pip
 
       - name: Install AWS EB CLI
         run: pip3 install awsebcli --upgrade --user
@@ -62,12 +72,10 @@ jobs:
           IBM_SERVICE_URL: ${{ secrets.IBM_SERVICE_URL }}
           PORT: ${{ secrets.PORT }}
         run: |
-          export PATH=$PATH:~/.local/bin
-          cd backend
-          eb init -p node.js $APPLICATION_NAME --region $AWS_REGION --interactive false
-          echo "MONGODB_URI=$MONGODB_URI" >> .elasticbeanstalk/.env
-          echo "IBM_API_KEY=$IBM_API_KEY" >> .elasticbeanstalk/.env
-          echo "IBM_SERVICE_URL=$IBM_SERVICE_URL" >> .elasticbeanstalk/.env
-          echo "PORT=$PORT" >> .elasticbeanstalk/.env
+          eb init -p node.js --region $AWS_REGION
           eb use $ENVIRONMENT_NAME
+          echo "MONGODB_URI=$MONGODB_URI" > .env
+          echo "IBM_API_KEY=$IBM_API_KEY" >> .env
+          echo "IBM_SERVICE_URL=$IBM_SERVICE_URL" >> .env
+          echo "PORT=$PORT" >> .env
           eb deploy
