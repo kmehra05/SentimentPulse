@@ -20,7 +20,7 @@ router.get('/analyze', async (req, res) => {
 });
 
 router.get('/history', async (req, res) => {
-  const query = req.query.keyword;
+  const query = req.query.keyword.toLowerCase();
   if (!query) {
     return res.status(400).json({ error: 'Keyword query parameter is required' });
   }
