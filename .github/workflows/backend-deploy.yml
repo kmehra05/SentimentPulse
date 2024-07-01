@@ -24,12 +24,12 @@ jobs:
 
       - name: Create Babel config
         run: |
-          echo "module.exports = { presets: ['@babel/preset-env'] };" > babel.config.js
+          echo "module.exports = { presets: [['@babel/preset-env', { targets: { node: 'current' } }]] };" > babel.config.js
         working-directory: backend
 
       - name: Create Jest config
         run: |
-          echo "module.exports = { transform: { '^.+\\\\.js$': 'babel-jest' }, testEnvironment: 'node', transformIgnorePatterns: ['/node_modules/(?!(bson)/)'], };" > jest.config.js
+          echo "module.exports = { transform: { '^.+\\\\.js$': 'babel-jest' }, testEnvironment: 'node', transformIgnorePatterns: ['/node_modules/(?!(bson|other-dependencies)/)'], };" > jest.config.js
         working-directory: backend
 
       - name: Run tests

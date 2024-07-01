@@ -4,6 +4,6 @@ module.exports = {
   },
   testEnvironment: 'node',
   transformIgnorePatterns: [
-    '/node_modules/(?!(bson)/)', // Add the module name here
+    '/node_modules/(?!bson)',
   ],
 };
