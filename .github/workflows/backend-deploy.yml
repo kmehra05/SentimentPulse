@@ -53,7 +53,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
+      
       - name: Install pip
         run: sudo apt-get install -y python3-pip
 
@@ -62,32 +62,25 @@ jobs:
 
       - name: Add EB CLI to PATH
         run: echo "$HOME/.local/bin" >> $GITHUB_PATH
+        
+      - name: Genrate Deployment Package
+        run: zip -r nodejs-app-build.zip .
+      - name: Deploy to EB
+        uses: einaregilsson/beanstalk-deploy@v21
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          application_name: ${{ secrets.APPLICATION_NAME }}
+          environment_name: ${{ secrets.ENVIRONMENT_NAME }}
+          version_label: ${{ github.sha }}
+          region: ${{ secrets.AWS_REGION }}
+          deployment_package: nodejs-app-build.zip
 
-      - name: Configure AWS
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        run: |
-          aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
-          aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
-          aws configure set region $AWS_REGION
-
-      - name: Deploy to Elastic Beanstalk
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: ${{ secrets.AWS_REGION }}
-          APPLICATION_NAME: ${{ secrets.APPLICATION_NAME }}
-          ENVIRONMENT_NAME: ${{ secrets.ENVIRONMENT_NAME }}
-          MONGODB_URI: ${{ secrets.MONGODB_URI }}
-          IBM_API_KEY: ${{ secrets.IBM_API_KEY }}
-          IBM_SERVICE_URL: ${{ secrets.IBM_SERVICE_URL }}
-          PORT: ${{ secrets.PORT }}
-        run: |
-          eb init -p node.js $APPLICATION_NAME --region $AWS_REGION --interactive
-          eb use $ENVIRONMENT_NAME
-          echo "MONGODB_URI=$MONGODB_URI" > .env
-          echo "IBM_API_KEY=$IBM_API_KEY" >> .env
-          echo "IBM_SERVICE_URL=$IBM_SERVICE_URL" >> .env
-          echo "PORT=$PORT" >> .env
-          eb deploy --staged
+      # - name: Configure AWS
+      #   env:
+      #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #   run: |
+      #     aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+      #     aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+      #     aws configure set region $AWS_REGION
