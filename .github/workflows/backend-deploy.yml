@@ -20,6 +20,7 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+        working-directory: backend
 
       - name: Run tests
         env:
@@ -31,6 +32,7 @@ jobs:
           IBM_SERVICE_URL: ${{ secrets.IBM_SERVICE_URL }}
           PORT: ${{ secrets.PORT }}
         run: npm test
+        working-directory: backend
 
       - name: Deploy to Elastic Beanstalk
         env:
@@ -39,8 +41,13 @@ jobs:
           AWS_REGION: ${{ secrets.AWS_REGION }}
           APPLICATION_NAME: ${{ secrets.APPLICATION_NAME }}
           ENVIRONMENT_NAME: ${{ secrets.ENVIRONMENT_NAME }}
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
+          IBM_API_KEY: ${{ secrets.IBM_API_KEY }}
+          IBM_SERVICE_URL: ${{ secrets.IBM_SERVICE_URL }}
+          PORT: ${{ secrets.PORT }}
         run: |
           npm install -g awsebcli
+          cd backend
           eb init -p node.js $APPLICATION_NAME --region $AWS_REGION --interactive false
           echo "MONGODB_URI=$MONGODB_URI" >> .elasticbeanstalk/.env
           echo "IBM_API_KEY=$IBM_API_KEY" >> .elasticbeanstalk/.env
