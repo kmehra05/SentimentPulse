@@ -24,7 +24,7 @@ const newsRouter = require('./routes/news');
 app.use('/api/news', newsRouter);
 app.use('/api/', newsRouter)
 
-const port = process.env.PORT || 8081;
+const port = /*process.env.PORT ||*/ 8081;
 
 app.listen(port, '0.0.0.0', () => {
   console.log(`Server Started at ${port}`);
