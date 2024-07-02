@@ -1,0 +1,36 @@
+org: krishmehra
+app: sentiment
+service: sentiment-backend
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  region: ${env:AWS_REGION}
+  environment:
+    MONGODB_URI: ${env:MONGODB_URI}
+    IBM_API_KEY: ${env:IBM_API_KEY}
+    IBM_SERVICE_URL: ${env:IBM_SERVICE_URL}
+    PORT: ${env:PORT}
+
+functions:
+  app:
+    handler: index.handler
+    events:
+      - httpApi:
+          path: /
+          method: any
+      - httpApi:
+          path: /{proxy+}
+          method: any
+
+package:
+  exclude:
+    - node_modules/**
+    - tests/**
+
+plugins:
+  - serverless-dotenv-plugin
+
+custom:
+  dotenv:
+    path: .env

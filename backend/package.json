@@ -19,7 +19,9 @@
     "ibm-watson": "^9.1.0",
     "mongodb": "^6.8.0",
     "mongoose": "^8.4.4",
-    "nodemon": "^3.1.4"
+    "nodemon": "^3.1.4",
+    "serverless-dotenv-plugin": "^6.0.0",
+    "serverless-http": "^3.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.24.7",
