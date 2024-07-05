@@ -24,7 +24,7 @@ const AnalysisPage = () => {
     const fetchData = async () => {
       try {
         setError(false)
-        const response = await axios.get(`${BASE_URL}/api/news/analyze?keyword=${keyword}`);
+        const response = await axios.get(`${BASE_URL}/api/analyze?keyword=${keyword}`);
         const history = await axios.get(`${BASE_URL}/api/history?keyword=${keyword}`);
 
         const stats = response.data.sentimentStats;

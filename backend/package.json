@@ -12,16 +12,20 @@
   "description": "",
   "dependencies": {
     "aws-sdk": "^2.1651.0",
+    "aws-serverless-express": "^3.4.0",
+    "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
+    "express-on-serverless": "^0.1.1",
     "gnews": "^1.0.3",
     "ibm-watson": "^9.1.0",
     "mongodb": "^6.8.0",
     "mongoose": "^8.4.4",
     "nodemon": "^3.1.4",
     "serverless-dotenv-plugin": "^6.0.0",
-    "serverless-http": "^3.2.0"
+    "serverless-http": "^3.2.0",
+    "serverless-offline": "^13.6.0"
   },
   "devDependencies": {
     "@babel/core": "^7.24.7",
