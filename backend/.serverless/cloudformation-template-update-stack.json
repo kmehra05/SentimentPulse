@@ -162,7 +162,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/sentiment-backend/dev/1720191279087-2024-07-05T14:54:39.087Z/sentiment-backend.zip"
+          "S3Key": "serverless/sentiment-backend/dev/1720216447500-2024-07-05T21:54:07.500Z/sentiment-backend.zip"
         },
         "Handler": "handler.index",
         "Runtime": "nodejs20.x",
@@ -187,14 +187,14 @@
         "ApiLogGroup"
       ]
     },
-    "ApiLambdaVersion7m6QKtYl3XShr8PWl5L1HecdsAaSRHfgfXnyJR3k": {
+    "ApiLambdaVersionyMPJMqhVh8lQihmEHn9cnckEz6lneXRLbySnKJsZd8": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ApiLambdaFunction"
         },
-        "CodeSha256": "NPnWgs3cB973J5/ujr6zKvkl2lWC6whKU/1wm7d86fo="
+        "CodeSha256": "YR6RPtr4skKzggfnoYbMuZ6+TQ5vt3lHwsxR70DaVDg="
       }
     },
     "ApiGatewayRestApi": {
@@ -270,7 +270,7 @@
         "ApiLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayDeployment1720191278374": {
+    "ApiGatewayDeployment1720216443745": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -332,7 +332,7 @@
     "ApiLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ApiLambdaVersion7m6QKtYl3XShr8PWl5L1HecdsAaSRHfgfXnyJR3k"
+        "Ref": "ApiLambdaVersionyMPJMqhVh8lQihmEHn9cnckEz6lneXRLbySnKJsZd8"
       },
       "Export": {
         "Name": "sls-sentiment-backend-dev-ApiLambdaFunctionQualifiedArn"

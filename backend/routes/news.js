@@ -5,7 +5,8 @@ const { getPastSentiments } = require('../services/sentimentService');
 const router = express.Router();
 
 router.get('/analyze', async (req, res) => {
-  const query = req.query.keyword;
+  const query = req?.query?.keyword;
+  console.log(req.query, req.body)
 
   if (!query) {
     return res.status(400).json({ error: 'Keyword query parameter is required' });
@@ -13,8 +14,9 @@ router.get('/analyze', async (req, res) => {
 
   try {
     const newsWithSentiment = await getNewsWithSentiment(query);
-    res.json(newsWithSentiment);
+    res.status(200).json(newsWithSentiment);
   } catch (error) {
+    console.log(error, ">>>>>>><<<<<<")
     res.status(500).json({ error: 'An error occurred while fetching and analyzing news' });
   }
 });
