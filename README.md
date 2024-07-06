@@ -13,8 +13,8 @@ Access the application at: [SentimentPulse Production](http://ec2-3-19-239-222.u
 
 ## Features
 
-- **User Input:** Simple UI for keyword or hashtag input.
-- **Sentiment Analysis:** Uses IBM NLU to analyze headline sentiments.
+- **User Input:** Allows for keyword/topi input
+- **Sentiment Analysis:** Uses IBM NLU to analyze headline sentiments and compound an overall sentiment score.
 - **Visualization:**
   - Pie chart displaying negative, neutral, and positive headlines.
   - Historical sentiment graph showing trends over time.
