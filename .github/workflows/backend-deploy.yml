@@ -1,0 +1,39 @@
+name: Backend CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Create Babel config
+        run: |
+          echo "module.exports = { presets: [['@babel/preset-env', { targets: { node: 'current' } }]] };" > babel.config.js
+      - name: Create Jest config
+        run: |
+          echo "module.exports = { transform: { '^.+\\\\.js$': 'babel-jest' }, testEnvironment: 'node', transformIgnorePatterns: ['/node_modules/(?!(bson|other-dependencies)/)'], };" > jest.config.js
+      - name: Run tests
+        env:
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
+          IBM_API_KEY: ${{ secrets.IBM_API_KEY }}
+          IBM_SERVICE_URL: ${{ secrets.IBM_SERVICE_URL }}
+          PORT: ${{ secrets.PORT }}
+        run: npm test
