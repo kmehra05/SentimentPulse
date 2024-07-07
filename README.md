@@ -13,7 +13,7 @@ Access the application at: [SentimentPulse Production](http://ec2-3-19-239-222.u
 
 ## Features
 
-- **User Input:** Allows for keyword/topi input
+- **User Input:** Allows for keyword/topic input
 - **Sentiment Analysis:** Uses IBM NLU to analyze headline sentiments and compound an overall sentiment score.
 - **Visualization:**
   - Pie chart displaying negative, neutral, and positive headlines.
