@@ -7,10 +7,6 @@ SentimentPulse is a full-stack web application designed to analyze and visualize
 
 https://github.com/kmehra05/SentimentPulse/assets/17500616/25f273ac-609e-4aa8-a72c-a9ff5af3ec68
 
-## Running in Production
-
-Access the application at: [SentimentPulse Production](http://ec2-3-19-239-222.us-east-2.compute.amazonaws.com:8080/)
-
 ## Features
 
 - **User Input:** Allows for keyword/topic input
