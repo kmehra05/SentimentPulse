@@ -20,7 +20,6 @@ https://github.com/kmehra05/SentimentPulse/assets/17500616/25f273ac-609e-4aa8-a7
 - **Frontend:** Vite + React.js
 - **Backend:** Node.js with Express
 - **Database:** MongoDB Atlas
-- **Machine Learning:** IBM NLU
 - **Hosting:** AWS EC2
 
 ## Running Locally
